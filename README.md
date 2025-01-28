@@ -11,4 +11,4 @@ Spatial Transcriptomics (ST) allows a high-resolution measurement of RNA sequenc
 
 
 ## Latest Update
-Our code is closed to be cleaned up and will be released soon and please stay tuned!
+Our code is close to being cleaned up and will be released soon. Please stay tuned!
