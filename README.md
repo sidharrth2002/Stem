@@ -1,14 +1,45 @@
-# Official Repo for paper "Diffusion Generative Modeling for Spatially Resolved Gene Expression Inference from Histology Images" (Stem)
+# Stem
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Paper](https://img.shields.io/badge/Paper-PDF-brightgreen)](https://arxiv.org/abs/2501.15598)
 
 
-**Abstract:**
-Spatial Transcriptomics (ST) allows a high-resolution measurement of RNA sequence abundance by systematically connecting cell morphology depicted in Hematoxylin and Eosin (H&E) stained histology images to spatially resolved gene expressions. ST is a time-consuming, expensive yet powerful experimental technique that provides new opportunities to understand cancer mechanisms at a fine-grained molecular level, which is critical for uncovering new approaches for disease diagnosis and treatments. Here, we present **Stem** (**S**pa**T**ially resolved gene **E**xpression inference with diffusion **M**odel), a novel computational tool that leverages a conditional diffusion generative model to enable in silico gene expression inference from H&E stained images. Through better capturing the inherent stochasticity and heterogeneity in ST data, **Stem** achieves state-of-the-art performance on spatial gene expression prediction and generates biologically meaningful gene profiles for new H&E stained images at test time. We evaluate the proposed algorithm on datasets with various tissue sources and sequencing platforms, where it demonstrates clear improvement over existing approaches. **Stem** generates high-fidelity gene expression predictions that share similar gene variation levels as ground truth data, suggesting that our method preserves the underlying biological heterogeneity. Our proposed pipeline opens up the possibility of analyzing existing, easily accessible H\&E stained histology images from a genomics point of view without physically performing gene expression profiling and empowers potential biological discovery from H&E stained histology images.
+Welcome to the official repository for **Stem** proposed in "Diffusion Generative Modeling for Spatially Resolved Gene Expression Inference from Histology Images."  
 
 ![Demonstration of Stem](assets/fig1.png)
 
+## Installation
+Download this repo:
+```
+git clone https://github.com/SichenZhu/Stem.git
+cd Stem
+```
+Create a new conda environment:
+```
+conda env create -f environment.yml
+conda activate stem_env
+```
+
+
+## Preparing Datasets:
+All the datasets used in paper could be downloaded from the [HEST](https://github.com/mahmoodlab/HEST) database.
+Run [dataset_download_hest1k.ipynb](dataset_download_hest1k.ipynb) to download datasets and [dataset_preprocess.ipynb](dataset_preprocess.ipynb) to preprocess the data.
+
+## Training and Sampling:
+To train **Stem**:
+```
+torchrun --nnodes=1 --nproc_per_node=1 --master_port=29501 stem_train.py
+```
+
+Sampling after training:
+```
+python stem_sample.py
+```
+
+## Evaluation:
+Run [eval.ipynb](eval.ipynb) to calculate different evalutaion metrics and visualize gene variation curves.
+
 
 ## Latest Update
-Our code is close to being cleaned up and will be released soon. Please stay tuned!
+[Jan 22, 2025] Stem was accepted to ICLR 2025.
+
