@@ -147,11 +147,11 @@ class Trainer:
 def assemble_dataset(input_args):
     # load & assemble data
     # leave the test slide out
-    slicename_lst = list(np.genfromtxt(input_args.data_path + "processed_data/" + input_args.folder_list_filename, dtype=str))
-    for slice_out in input_args.slice_out.split(","):
-        slicename_lst.remove(slice_out)
-        input_args.logger.info(f"{slice_out} is held out for testing.")
-    input_args.logger.info(f"Remaining {len(slicename_lst)} slices: {slicename_lst}")
+    slidename_lst = list(np.genfromtxt(input_args.data_path + "processed_data/" + input_args.folder_list_filename, dtype=str))
+    for slide_out in input_args.slide_out.split(","):
+        slidename_lst.remove(slide_out)
+        input_args.logger.info(f"{slide_out} is held out for testing.")
+    input_args.logger.info(f"Remaining {len(slidename_lst)} slides: {slidename_lst}")
 
     # load selected gene list
     selected_genes = list(np.genfromtxt(input_args.data_path + "processed_data/" + input_args.gene_list_filename, dtype=str))
@@ -160,54 +160,54 @@ def assemble_dataset(input_args):
 
 
     # load original patches
-    first_slice = True
+    first_slide = True
     all_img_ebd_ori = None
     all_count_mtx_ori = None
     input_args.logger.info("Loading original data...")
-    for sni in range(len(slicename_lst)):
-        sample_name = slicename_lst[sni]
+    for sni in range(len(slidename_lst)):
+        sample_name = slidename_lst[sni]
         test_adata = anndata.read_h5ad(input_args.data_path + "st/" + sample_name + ".h5ad")
         test_count_mtx = pd.DataFrame(test_adata[:, selected_genes].X.toarray(), 
                                       columns=selected_genes, 
                                       index=[sample_name + "_" + str(i) for i in range(test_adata.shape[0])])
         
-        if first_slice:
+        if first_slide:
             all_count_mtx_ori = test_count_mtx
             img_ebd_uni   = torch.load(input_args.data_path + "processed_data/1spot_uni_ebd/"   + sample_name + "_uni.pt",   map_location="cpu")
             img_ebd_conch = torch.load(input_args.data_path + "processed_data/1spot_conch_ebd/" + sample_name + "_conch.pt", map_location="cpu")
             all_img_ebd_ori = torch.cat([img_ebd_uni, img_ebd_conch], axis=1)
             input_args.logger.info(f"{sample_name} loaded, count_mtx shape: {all_count_mtx_ori.shape}  | img ebd shape: {all_img_ebd_ori.shape}")
-            first_slice = False
+            first_slide = False
             continue
         
         img_ebd_uni   = torch.load(input_args.data_path + "processed_data/1spot_uni_ebd/"   + sample_name + "_uni.pt",   map_location="cpu")
         img_ebd_conch = torch.load(input_args.data_path + "processed_data/1spot_conch_ebd/" + sample_name + "_conch.pt", map_location="cpu")
-        slice_img_ebd = torch.cat([img_ebd_uni, img_ebd_conch], axis=1)
-        all_img_ebd_ori = torch.cat([all_img_ebd_ori, slice_img_ebd], axis=0)
+        slide_img_ebd = torch.cat([img_ebd_uni, img_ebd_conch], axis=1)
+        all_img_ebd_ori = torch.cat([all_img_ebd_ori, slide_img_ebd], axis=0)
         all_count_mtx_ori = np.concatenate((all_count_mtx_ori, test_count_mtx), axis=0)
         input_args.logger.info(f"{sample_name} loaded, count_mtx shape: {all_count_mtx_ori.shape} | img ebd shape: {all_img_ebd_ori.shape}")
     input_args.cond_size = all_img_ebd_ori.shape[1]
     
     # load augmented patches
-    first_slice = True
+    first_slide = True
     all_img_ebd_aug = None
     input_args.logger.info(f"Augmentation data loading...")
-    for sni in range(len(slicename_lst)):
-        sample_name = slicename_lst[sni]
+    for sni in range(len(slidename_lst)):
+        sample_name = slidename_lst[sni]
 
-        if first_slice:
+        if first_slide:
             img_ebd_uni   = torch.load(input_args.data_path + "processed_data/1spot_uni_ebd_aug/"   + sample_name + "_uni_aug.pt",   map_location="cpu")
             img_ebd_conch = torch.load(input_args.data_path + "processed_data/1spot_conch_ebd_aug/" + sample_name + "_conch_aug.pt", map_location="cpu")
             all_img_ebd_aug = torch.cat([img_ebd_uni, img_ebd_conch], axis=-1)
             input_args.logger.info(f"With augmentation {sample_name} loaded, img_ebd_mtx shape: {all_img_ebd_aug.shape}, all_img_ebd shape: {all_img_ebd_aug.shape}")
-            first_slice = False
+            first_slide = False
             continue
         
         img_ebd_uni   = torch.load(input_args.data_path + "processed_data/1spot_uni_ebd_aug/"   + sample_name + "_uni_aug.pt",   map_location="cpu")
         img_ebd_conch = torch.load(input_args.data_path + "processed_data/1spot_conch_ebd_aug/" + sample_name + "_conch_aug.pt", map_location="cpu")
-        slice_img_ebd = torch.cat([img_ebd_uni, img_ebd_conch], axis=-1)
-        all_img_ebd_aug = torch.cat([all_img_ebd_aug, slice_img_ebd], axis=0)
-        input_args.logger.info(f"With augmentation {sample_name} loaded, img_ebd_mtx shape: {slice_img_ebd.shape}, all_img_ebd shape: {all_img_ebd_aug.shape}")
+        slide_img_ebd = torch.cat([img_ebd_uni, img_ebd_conch], axis=-1)
+        all_img_ebd_aug = torch.cat([all_img_ebd_aug, slide_img_ebd], axis=0)
+        input_args.logger.info(f"With augmentation {sample_name} loaded, img_ebd_mtx shape: {slide_img_ebd.shape}, all_img_ebd shape: {all_img_ebd_aug.shape}")
      
     # randomly select augmented patches according to the input augmentation ratio (int)
     num_aug_ratio = input_args.num_aug_ratio
@@ -322,8 +322,8 @@ if __name__ == "__main__":
     parser.add_argument("--expr_name", type=str, default="PRAD")
     parser.add_argument("--data_path", type=str, default="./hest1k_datasets/PRAD/", help="Dataset path")
     parser.add_argument("--results_dir", type=str, default="./PRAD_results/runs/", help="Path to hold runs")
-    parser.add_argument("--slice_out", type=str, default="MEND145", help="Test slide ID") 
-    parser.add_argument("--folder_list_filename", type=str, default="all_slide_lst.txt", help="File names for all slides in the dataset")
+    parser.add_argument("--slide_out", type=str, default="MEND145", help="Test slide ID. Multiple slides separated by comma.") 
+    parser.add_argument("--folder_list_filename", type=str, default="all_slide_lst.txt", help="A txt file listing file names for all training and testing slides in the dataset")
     parser.add_argument("--gene_list_filename", type=str, default="selected_gene_list.txt", help="Selected gene list")
     parser.add_argument("--num_aug_ratio", type=int, default=7, help="Image augmentation ratio (int)")
     
