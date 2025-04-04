@@ -53,11 +53,11 @@ def get_img_patch_embd(img,
     # CONCH model
     from conch.open_clip_custom import create_model_from_pretrained
     pretrained_CONCH, preprocess_CONCH = create_model_from_pretrained('conch_ViT-B-16', "hf_hub:MahmoodLab/conch", device=device,
-                                        hf_auth_token="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") # TODO: need to replace "" by HuggingFace Login Token
+                                        hf_auth_token="") # TODO: need to replace "" by HuggingFace Login Token
 
     # UNI model
     from uni import get_encoder
-    login(token="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") # TODO: need to replace "" by HuggingFace Login Token
+    login(token="") # TODO: need to replace "" by HuggingFace Login Token
     model_UNI, transform_UNI = get_encoder(enc_name='uni', device=device)
 
 
