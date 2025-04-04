@@ -1,0 +1,127 @@
+[[34m2025-04-03 22:14:50[0m] Experiment directory created at ./results/kidney//000
+[[34m2025-04-03 22:14:50[0m] Rank: 0 | Device: cuda:6 | Seed: 42
+[[34m2025-04-03 22:14:50[0m] NCBI712 is held out for testing.
+[[34m2025-04-03 22:14:50[0m] Remaining 20 slides: ['NCBI692', 'NCBI693', 'NCBI694', 'NCBI695', 'NCBI696', 'NCBI697', 'NCBI698', 'NCBI699', 'NCBI700', 'NCBI701', 'NCBI702', 'NCBI703', 'NCBI704', 'NCBI705', 'NCBI706', 'NCBI707', 'NCBI708', 'NCBI709', 'NCBI710', 'NCBI711']
+[[34m2025-04-03 22:14:50[0m] Selected genes filename: selected_gene_list.txt | len: 198
+[[34m2025-04-03 22:14:50[0m] Loading original data...
+[[34m2025-04-03 22:14:50[0m] NCBI692 loaded, count_mtx shape: (370, 198)  | img ebd shape: torch.Size([370, 1536])
+[[34m2025-04-03 22:14:50[0m] NCBI693 loaded, count_mtx shape: (877, 198) | img ebd shape: torch.Size([877, 1536])
+[[34m2025-04-03 22:14:51[0m] NCBI694 loaded, count_mtx shape: (1517, 198) | img ebd shape: torch.Size([1517, 1536])
+[[34m2025-04-03 22:14:51[0m] NCBI695 loaded, count_mtx shape: (2190, 198) | img ebd shape: torch.Size([2190, 1536])
+[[34m2025-04-03 22:14:51[0m] NCBI696 loaded, count_mtx shape: (2835, 198) | img ebd shape: torch.Size([2835, 1536])
+[[34m2025-04-03 22:14:51[0m] NCBI697 loaded, count_mtx shape: (3152, 198) | img ebd shape: torch.Size([3152, 1536])
+[[34m2025-04-03 22:14:51[0m] NCBI698 loaded, count_mtx shape: (3559, 198) | img ebd shape: torch.Size([3559, 1536])
+[[34m2025-04-03 22:14:51[0m] NCBI699 loaded, count_mtx shape: (4346, 198) | img ebd shape: torch.Size([4346, 1536])
+[[34m2025-04-03 22:14:51[0m] NCBI700 loaded, count_mtx shape: (4947, 198) | img ebd shape: torch.Size([4947, 1536])
+[[34m2025-04-03 22:14:52[0m] NCBI701 loaded, count_mtx shape: (5851, 198) | img ebd shape: torch.Size([5851, 1536])
+[[34m2025-04-03 22:14:52[0m] NCBI702 loaded, count_mtx shape: (6312, 198) | img ebd shape: torch.Size([6312, 1536])
+[[34m2025-04-03 22:14:52[0m] NCBI703 loaded, count_mtx shape: (6765, 198) | img ebd shape: torch.Size([6765, 1536])
+[[34m2025-04-03 22:14:52[0m] NCBI704 loaded, count_mtx shape: (7299, 198) | img ebd shape: torch.Size([7299, 1536])
+[[34m2025-04-03 22:14:52[0m] NCBI705 loaded, count_mtx shape: (7859, 198) | img ebd shape: torch.Size([7859, 1536])
+[[34m2025-04-03 22:14:52[0m] NCBI706 loaded, count_mtx shape: (8532, 198) | img ebd shape: torch.Size([8532, 1536])
+[[34m2025-04-03 22:14:52[0m] NCBI707 loaded, count_mtx shape: (9205, 198) | img ebd shape: torch.Size([9205, 1536])
+[[34m2025-04-03 22:14:53[0m] NCBI708 loaded, count_mtx shape: (10527, 198) | img ebd shape: torch.Size([10527, 1536])
+[[34m2025-04-03 22:14:53[0m] NCBI709 loaded, count_mtx shape: (11561, 198) | img ebd shape: torch.Size([11561, 1536])
+[[34m2025-04-03 22:14:53[0m] NCBI710 loaded, count_mtx shape: (12517, 198) | img ebd shape: torch.Size([12517, 1536])
+[[34m2025-04-03 22:14:53[0m] NCBI711 loaded, count_mtx shape: (15144, 198) | img ebd shape: torch.Size([15144, 1536])
+[[34m2025-04-03 22:14:53[0m] Augmentation data loading...
+[[34m2025-04-03 22:14:53[0m] With augmentation NCBI692 loaded, img_ebd_mtx shape: torch.Size([370, 7, 1536]), all_img_ebd shape: torch.Size([370, 7, 1536])
+[[34m2025-04-03 22:14:53[0m] With augmentation NCBI693 loaded, img_ebd_mtx shape: torch.Size([507, 7, 1536]), all_img_ebd shape: torch.Size([877, 7, 1536])
+[[34m2025-04-03 22:14:53[0m] With augmentation NCBI694 loaded, img_ebd_mtx shape: torch.Size([640, 7, 1536]), all_img_ebd shape: torch.Size([1517, 7, 1536])
+[[34m2025-04-03 22:14:53[0m] With augmentation NCBI695 loaded, img_ebd_mtx shape: torch.Size([673, 7, 1536]), all_img_ebd shape: torch.Size([2190, 7, 1536])
+[[34m2025-04-03 22:14:53[0m] With augmentation NCBI696 loaded, img_ebd_mtx shape: torch.Size([645, 7, 1536]), all_img_ebd shape: torch.Size([2835, 7, 1536])
+[[34m2025-04-03 22:14:53[0m] With augmentation NCBI697 loaded, img_ebd_mtx shape: torch.Size([317, 7, 1536]), all_img_ebd shape: torch.Size([3152, 7, 1536])
+[[34m2025-04-03 22:14:53[0m] With augmentation NCBI698 loaded, img_ebd_mtx shape: torch.Size([407, 7, 1536]), all_img_ebd shape: torch.Size([3559, 7, 1536])
+[[34m2025-04-03 22:14:53[0m] With augmentation NCBI699 loaded, img_ebd_mtx shape: torch.Size([787, 7, 1536]), all_img_ebd shape: torch.Size([4346, 7, 1536])
+[[34m2025-04-03 22:14:53[0m] With augmentation NCBI700 loaded, img_ebd_mtx shape: torch.Size([601, 7, 1536]), all_img_ebd shape: torch.Size([4947, 7, 1536])
+[[34m2025-04-03 22:14:53[0m] With augmentation NCBI701 loaded, img_ebd_mtx shape: torch.Size([904, 7, 1536]), all_img_ebd shape: torch.Size([5851, 7, 1536])
+[[34m2025-04-03 22:14:53[0m] With augmentation NCBI702 loaded, img_ebd_mtx shape: torch.Size([461, 7, 1536]), all_img_ebd shape: torch.Size([6312, 7, 1536])
+[[34m2025-04-03 22:14:54[0m] With augmentation NCBI703 loaded, img_ebd_mtx shape: torch.Size([453, 7, 1536]), all_img_ebd shape: torch.Size([6765, 7, 1536])
+[[34m2025-04-03 22:14:54[0m] With augmentation NCBI704 loaded, img_ebd_mtx shape: torch.Size([534, 7, 1536]), all_img_ebd shape: torch.Size([7299, 7, 1536])
+[[34m2025-04-03 22:14:54[0m] With augmentation NCBI705 loaded, img_ebd_mtx shape: torch.Size([560, 7, 1536]), all_img_ebd shape: torch.Size([7859, 7, 1536])
+[[34m2025-04-03 22:14:54[0m] With augmentation NCBI706 loaded, img_ebd_mtx shape: torch.Size([673, 7, 1536]), all_img_ebd shape: torch.Size([8532, 7, 1536])
+[[34m2025-04-03 22:14:54[0m] With augmentation NCBI707 loaded, img_ebd_mtx shape: torch.Size([673, 7, 1536]), all_img_ebd shape: torch.Size([9205, 7, 1536])
+[[34m2025-04-03 22:14:54[0m] With augmentation NCBI708 loaded, img_ebd_mtx shape: torch.Size([1322, 7, 1536]), all_img_ebd shape: torch.Size([10527, 7, 1536])
+[[34m2025-04-03 22:14:54[0m] With augmentation NCBI709 loaded, img_ebd_mtx shape: torch.Size([1034, 7, 1536]), all_img_ebd shape: torch.Size([11561, 7, 1536])
+[[34m2025-04-03 22:14:54[0m] With augmentation NCBI710 loaded, img_ebd_mtx shape: torch.Size([956, 7, 1536]), all_img_ebd shape: torch.Size([12517, 7, 1536])
+[[34m2025-04-03 22:14:54[0m] With augmentation NCBI711 loaded, img_ebd_mtx shape: torch.Size([2627, 7, 1536]), all_img_ebd shape: torch.Size([15144, 7, 1536])
+[[34m2025-04-03 22:14:55[0m] 7:1 augmentation. CONCH+UNI. final count_mtx shape: (121152, 198) | final img_ebd shape: torch.Size([121152, 1536])
+[[34m2025-04-03 22:14:55[0m] All NAN spot index: Index([], dtype='int64')
+[[34m2025-04-03 22:14:55[0m] All zero spot index: Index([10325, 87419, 87420, 87421, 87422, 87423, 87424, 87425], dtype='int64')
+[[34m2025-04-03 22:14:55[0m] After exclude rows with all nan/zeros: (121144, 198), torch.Size([121144, 1536])
+[[34m2025-04-03 22:14:55[0m] Selected genes count matrix shape: (121144, 198)
+[[34m2025-04-03 22:14:56[0m] Dataset contains 121,144 images (/auto/archive/tcga/sn666/hest1k_datasets/kidney/)
+[[34m2025-04-03 22:14:56[0m] Dataset, model, and args finished loading.
+[[34m2025-04-03 22:14:56[0m] Dataloader finished loading.
+[[34m2025-04-03 22:14:56[0m] Rank 0 - Initializing Trainer... DiT Parameters: 35,638,274
+[[34m2025-04-03 22:14:56[0m] Trainer finished loading.
+[[34m2025-04-03 22:14:56[0m] Starting...
+[[34m2025-04-03 22:17:20[0m] Step=0000500 | Training Loss: 0.26383
+[[34m2025-04-03 22:19:44[0m] Step=0001000 | Training Loss: 0.19990
+[[34m2025-04-03 22:22:08[0m] Step=0001500 | Training Loss: 0.18706
+[[34m2025-04-03 22:24:32[0m] Step=0002000 | Training Loss: 0.18214
+[[34m2025-04-03 22:26:56[0m] Step=0002500 | Training Loss: 0.17925
+[[34m2025-04-03 22:29:20[0m] Step=0003000 | Training Loss: 0.17652
+[[34m2025-04-03 22:31:44[0m] Step=0003500 | Training Loss: 0.17551
+[[34m2025-04-03 22:34:08[0m] Step=0004000 | Training Loss: 0.17472
+[[34m2025-04-03 22:36:32[0m] Step=0004500 | Training Loss: 0.17461
+[[34m2025-04-03 22:38:56[0m] Step=0005000 | Training Loss: 0.17310
+[[34m2025-04-03 22:41:20[0m] Step=0005500 | Training Loss: 0.17188
+[[34m2025-04-03 22:43:44[0m] Step=0006000 | Training Loss: 0.17160
+[[34m2025-04-03 22:46:08[0m] Step=0006500 | Training Loss: 0.17001
+[[34m2025-04-03 22:48:32[0m] Step=0007000 | Training Loss: 0.17055
+[[34m2025-04-03 22:50:56[0m] Step=0007500 | Training Loss: 0.16957
+[[34m2025-04-03 22:53:20[0m] Step=0008000 | Training Loss: 0.16852
+[[34m2025-04-03 22:55:44[0m] Step=0008500 | Training Loss: 0.16723
+[[34m2025-04-03 22:58:08[0m] Step=0009000 | Training Loss: 0.16764
+[[34m2025-04-03 23:00:32[0m] Step=0009500 | Training Loss: 0.16602
+[[34m2025-04-03 23:02:56[0m] Step=0010000 | Training Loss: 0.16544
+[[34m2025-04-03 23:05:21[0m] Step=0010500 | Training Loss: 0.16350
+[[34m2025-04-03 23:07:45[0m] Step=0011000 | Training Loss: 0.16290
+[[34m2025-04-03 23:10:09[0m] Step=0011500 | Training Loss: 0.16124
+[[34m2025-04-03 23:12:33[0m] Step=0012000 | Training Loss: 0.15817
+[[34m2025-04-03 23:14:57[0m] Step=0012500 | Training Loss: 0.15618
+[[34m2025-04-03 23:17:21[0m] Step=0013000 | Training Loss: 0.15361
+[[34m2025-04-03 23:19:46[0m] Step=0013500 | Training Loss: 0.15185
+[[34m2025-04-03 23:22:10[0m] Step=0014000 | Training Loss: 0.14895
+[[34m2025-04-03 23:24:34[0m] Step=0014500 | Training Loss: 0.14382
+[[34m2025-04-03 23:26:58[0m] Step=0015000 | Training Loss: 0.14919
+[[34m2025-04-03 23:29:22[0m] Step=0015500 | Training Loss: 0.14079
+[[34m2025-04-03 23:31:46[0m] Step=0016000 | Training Loss: 0.13652
+[[34m2025-04-03 23:34:10[0m] Step=0016500 | Training Loss: 0.15176
+[[34m2025-04-03 23:36:34[0m] Step=0017000 | Training Loss: 0.13224
+[[34m2025-04-03 23:38:57[0m] Step=0017500 | Training Loss: 0.13131
+[[34m2025-04-03 23:41:21[0m] Step=0018000 | Training Loss: 0.12286
+[[34m2025-04-03 23:43:46[0m] Step=0018500 | Training Loss: 0.11883
+[[34m2025-04-03 23:46:10[0m] Step=0019000 | Training Loss: 0.11563
+[[34m2025-04-03 23:48:34[0m] Step=0019500 | Training Loss: 0.11288
+[[34m2025-04-03 23:50:58[0m] Step=0020000 | Training Loss: 0.10942
+[[34m2025-04-03 23:53:22[0m] Step=0020500 | Training Loss: 0.10443
+[[34m2025-04-03 23:55:46[0m] Step=0021000 | Training Loss: 0.10154
+[[34m2025-04-03 23:58:10[0m] Step=0021500 | Training Loss: 0.09941
+[[34m2025-04-04 00:00:34[0m] Step=0022000 | Training Loss: 0.09694
+[[34m2025-04-04 00:02:58[0m] Step=0022500 | Training Loss: 0.09310
+[[34m2025-04-04 00:05:22[0m] Step=0023000 | Training Loss: 0.09039
+[[34m2025-04-04 00:07:46[0m] Step=0023500 | Training Loss: 0.08786
+[[34m2025-04-04 00:10:10[0m] Step=0024000 | Training Loss: 0.08716
+[[34m2025-04-04 00:12:34[0m] Step=0024500 | Training Loss: 0.08420
+[[34m2025-04-04 00:14:59[0m] Step=0025000 | Training Loss: 0.08157
+[[34m2025-04-04 00:14:59[0m] Saved checkpoint to ./results/kidney//000/checkpoints/0025000.pt
+[[34m2025-04-04 00:17:23[0m] Step=0025500 | Training Loss: 0.07932
+[[34m2025-04-04 00:19:48[0m] Step=0026000 | Training Loss: 0.07651
+[[34m2025-04-04 00:22:12[0m] Step=0026500 | Training Loss: 0.07532
+[[34m2025-04-04 00:24:36[0m] Step=0027000 | Training Loss: 0.07326
+[[34m2025-04-04 00:27:00[0m] Step=0027500 | Training Loss: 0.07114
+[[34m2025-04-04 00:29:24[0m] Step=0028000 | Training Loss: 0.07049
+[[34m2025-04-04 00:31:48[0m] Step=0028500 | Training Loss: 0.06909
+[[34m2025-04-04 00:34:12[0m] Step=0029000 | Training Loss: 0.06691
+[[34m2025-04-04 00:36:36[0m] Step=0029500 | Training Loss: 0.06606
+[[34m2025-04-04 00:39:00[0m] Step=0030000 | Training Loss: 0.06478
+[[34m2025-04-04 00:41:24[0m] Step=0030500 | Training Loss: 0.06400
+[[34m2025-04-04 00:43:49[0m] Step=0031000 | Training Loss: 0.06278
+[[34m2025-04-04 00:46:13[0m] Step=0031500 | Training Loss: 0.06413
+[[34m2025-04-04 00:48:37[0m] Step=0032000 | Training Loss: 0.06653
+[[34m2025-04-04 00:51:02[0m] Step=0032500 | Training Loss: 0.06043
+[[34m2025-04-04 00:53:25[0m] Step=0033000 | Training Loss: 0.05960
+[[34m2025-04-04 00:55:50[0m] Step=0033500 | Training Loss: 0.05794
+[[34m2025-04-04 00:58:14[0m] Step=0034000 | Training Loss: 0.05801

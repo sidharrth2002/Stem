@@ -1,3 +1,4 @@
+import json
 import torch
 # the first flag below was False when we tested this script but True makes A100 training a lot faster:
 torch.backends.cuda.matmul.allow_tf32 = True
@@ -74,9 +75,11 @@ class Trainer:
         self.args = model_args
         
         self.model = model
-        self.ema = deepcopy(model).to(gpu_id)
+        # self.ema = deepcopy(model).to(gpu_id)
+        self.ema = deepcopy(model).to(torch.device("cuda"))
         requires_grad(self.ema, False)
-        self.model = DDP(self.model.to(gpu_id), device_ids=[self.gpu_id])
+        # self.model = DDP(self.model.to(gpu_id), device_ids=[self.gpu_id])
+        self.model = DDP(self.model.to(torch.device("cuda")))
         self.diffusion = create_diffusion(timestep_respacing="")
         self.optimizer = torch.optim.AdamW(self.model.parameters(), 
                                            lr=self.args.lr, weight_decay=0)
@@ -88,7 +91,6 @@ class Trainer:
         self.running_loss=0
 
     def _run_batch(self, x, t, modelkwargs):
-
         loss_dict = self.diffusion.training_losses(self.model, x, t, modelkwargs)
         loss = loss_dict["loss"].mean()
         self.optimizer.zero_grad()
@@ -118,12 +120,20 @@ class Trainer:
         print(f"[GPU{self.gpu_id}] Epoch {epoch} | Batchsize: {b_sz} | Steps: {len(self.train_data)}")
         self.train_data.sampler.set_epoch(epoch)
 
+        print(f"Length of train data: {len(self.train_data)}")
+
+        progress_bar = tqdm(total=len(self.train_data), desc=f"Epoch {epoch}", position=self.rank)
+
         for x, y in self.train_data:
-            x = x.unsqueeze(1).to(self.gpu_id)  # (N, 1, NumGene)
-            y = y.to(self.gpu_id)               # (N, NumEmbed)
+            # x = x.unsqueeze(1).to(self.gpu_id)  # (N, 1, NumGene)
+            x = x.unsqueeze(1).to(torch.device("cuda"))  # (N, 1, NumGene)
+            # y = y.to(self.gpu_id)               # (N, NumEmbed)
+            y = y.to(torch.device("cuda"))               # (N, NumEmbed)
             t = torch.randint(0, self.diffusion.num_timesteps, (x.size(0),), device=x.device)
             model_kwargs = dict(y=y)
             self._run_batch(x, t, model_kwargs)
+            progress_bar.update(1)
+        progress_bar.close()
 
     def _save_checkpoint(self):
         checkpoint = {
@@ -148,6 +158,8 @@ def assemble_dataset(input_args):
     # load & assemble data
     # leave the test slide out
     slidename_lst = list(np.genfromtxt(input_args.data_path + "processed_data/" + input_args.folder_list_filename, dtype=str))
+    # slidename_lst = json.load(open('/home/sn666/dissertation/config/selected_samples_and_genes/sample_selection_28Feb_2.json', 'r'))['train']
+
     for slide_out in input_args.slide_out.split(","):
         slidename_lst.remove(slide_out)
         input_args.logger.info(f"{slide_out} is held out for testing.")
@@ -155,9 +167,9 @@ def assemble_dataset(input_args):
 
     # load selected gene list
     selected_genes = list(np.genfromtxt(input_args.data_path + "processed_data/" + input_args.gene_list_filename, dtype=str))
+    # selected_genes = json.load(open('/home/sn666/dissertation/config/selected_samples_and_genes/sample_selection_28Feb_2.json', 'r'))['highly_variable_genes']
     input_args.input_gene_size = len(selected_genes)
     input_args.logger.info(f"Selected genes filename: {input_args.gene_list_filename} | len: {len(selected_genes)}")
-
 
     # load original patches
     first_slide = True
@@ -282,7 +294,7 @@ def main(world_size: int,
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
-    torch.cuda.set_device(device)
+    # torch.cuda.set_device(device)
 
     # set up output folder and logger
     if rank == 0:
